@@ -1,0 +1,254 @@
+/* DealProof: a warm-paper deal board with an ink masthead. Prices are set
+   big and plain; the honesty badge is the loudest colour on each card. */
+
+:root {
+  --ink: #17130c;
+  --paper: #f7f2e7;
+  --card: #fffdf8;
+  --line: #e2d9c6;
+  --muted: #6f6350;
+  --accent: #c2410c;
+  --low: #0a7d3b;
+  --strong: #175cd3;
+  --routine-bg: #fdf0d5;
+  --routine: #8a5a00;
+  --inflated: #b42318;
+  --radius: 14px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.45;
+}
+
+a { color: var(--accent); }
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible {
+  outline: 3px solid var(--strong);
+  outline-offset: 2px;
+}
+
+/* Masthead */
+.masthead {
+  background: var(--ink);
+  color: #fdf8ec;
+  padding: 28px 20px 22px;
+  text-align: center;
+}
+.brand {
+  color: #fdf8ec;
+  font-size: clamp(34px, 6vw, 52px);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+}
+.brand-mark { color: #ffb020; }
+.tagline {
+  max-width: 640px;
+  margin: 8px auto 0;
+  font-size: 16px;
+  color: #e8dfc9;
+}
+.stats-line {
+  margin: 12px auto 0;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #ffb020;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* Controls */
+.controls {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 18px 16px 4px;
+}
+.control-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.control { display: flex; flex-direction: column; gap: 4px; }
+.control.grow { flex: 1 1 240px; }
+.control-label { font-size: 12.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); }
+.control input, .control select {
+  min-height: 46px;
+  padding: 10px 12px;
+  font-size: 16px;
+  color: var(--ink);
+  background: var(--card);
+  border: 1.5px solid var(--line);
+  border-radius: 10px;
+}
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.chip {
+  min-height: 42px;
+  padding: 8px 16px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+  background: var(--card);
+  border: 1.5px solid var(--line);
+  border-radius: 999px;
+  cursor: pointer;
+}
+.chip-active { background: var(--ink); color: #fdf8ec; border-color: var(--ink); }
+.result-count { font-size: 14.5px; font-weight: 600; color: var(--muted); margin: 12px 2px 0; }
+
+/* Board */
+.board, .compare { max-width: 1180px; margin: 0 auto; padding: 14px 16px 8px; }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(295px, 1fr));
+  gap: 16px;
+}
+.card {
+  background: var(--card);
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius);
+  padding: 16px 18px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.card-top { display: flex; justify-content: space-between; align-items: center; }
+.badge {
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 5px 10px;
+  border-radius: 999px;
+  color: #fff;
+}
+.badge-new-low { background: var(--low); }
+.badge-strong { background: var(--strong); }
+.badge-routine { background: var(--routine-bg); color: var(--routine); }
+.badge-inflated { background: var(--inflated); }
+.score-chip {
+  min-width: 40px;
+  height: 40px;
+  padding: 0 8px;
+  border-radius: 999px;
+  background: var(--ink);
+  color: #ffb020;
+  font-size: 17px;
+  font-weight: 900;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.score-chip.big { min-width: 52px; height: 52px; font-size: 22px; }
+.card-title { font-size: 18.5px; line-height: 1.25; margin: 0; }
+.card-title a { color: var(--ink); text-decoration: none; }
+.card-title a:hover { text-decoration: underline; }
+.card-meta { margin: 0; font-size: 13.5px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
+.card-prices { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.price-now { font-size: 34px; font-weight: 900; letter-spacing: -0.02em; }
+.price-was { font-size: 17px; color: var(--muted); text-decoration: line-through; }
+.price-off { font-size: 16px; font-weight: 800; color: var(--accent); }
+.card-saves { margin: 0; font-size: 14.5px; font-weight: 700; }
+.card-evidence { margin: 0; font-size: 14.5px; color: #3d362a; flex: 1; }
+.card-foot {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  border-top: 1px solid var(--line);
+  padding-top: 10px;
+}
+.card-checked { font-size: 12.5px; color: var(--muted); }
+.store-link { font-size: 15px; font-weight: 800; text-decoration: none; }
+.store-link:hover { text-decoration: underline; }
+
+/* Empty state */
+.empty-state {
+  background: var(--card);
+  border: 1.5px dashed var(--line);
+  border-radius: var(--radius);
+  padding: 28px;
+  text-align: center;
+}
+
+/* Cross-store price checks */
+.section-title { font-size: 24px; margin: 18px 0 4px; }
+.section-sub { color: var(--muted); max-width: 720px; margin: 0 0 14px; }
+.compare-row {
+  background: var(--card);
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius);
+  padding: 14px 18px;
+  margin-bottom: 14px;
+}
+.compare-title { margin: 0 0 10px; font-size: 17px; }
+.compare-cells { display: flex; flex-wrap: wrap; gap: 12px; }
+.compare-cell {
+  flex: 1 1 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 10px 12px;
+}
+.compare-cell.cheapest { border-color: var(--low); background: #f0faf3; }
+.compare-store { font-size: 12.5px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); }
+.compare-price { font-size: 24px; font-weight: 900; }
+.compare-was { font-size: 13px; color: var(--muted); }
+.compare-cell .badge { align-self: flex-start; margin-top: 4px; }
+.compare-flag { font-size: 12.5px; font-weight: 800; color: var(--low); }
+.compare-link { font-size: 14px; font-weight: 700; margin-top: 4px; }
+
+/* Detail view */
+.detail { max-width: 760px; margin: 0 auto; }
+.back-link { font-weight: 700; text-decoration: none; display: inline-block; margin-bottom: 14px; }
+.detail-title { font-size: clamp(24px, 4.5vw, 34px); margin: 6px 0 4px; line-height: 1.15; }
+.detail-prices .price-now { font-size: 46px; }
+.why-box {
+  background: #fdf6e0;
+  border: 1.5px solid #ecd28f;
+  border-radius: var(--radius);
+  padding: 14px 18px;
+  margin: 14px 0;
+}
+.why-box h3 { margin: 0 0 6px; font-size: 16.5px; }
+.why-box p { margin: 0; }
+.facts { display: grid; grid-template-columns: 130px 1fr; gap: 6px 14px; margin: 14px 0; }
+.facts dt { font-weight: 800; color: var(--muted); font-size: 13.5px; text-transform: uppercase; letter-spacing: 0.04em; }
+.facts dd { margin: 0; font-weight: 600; }
+.cta-link {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-size: 17px;
+  font-weight: 800;
+  text-decoration: none;
+  padding: 13px 22px;
+  border-radius: 10px;
+  min-height: 48px;
+}
+.alt-box { margin-top: 20px; border-top: 1.5px solid var(--line); padding-top: 12px; }
+.alt-line { font-size: 15.5px; }
+
+/* Footer */
+.site-foot {
+  max-width: 1180px;
+  margin: 22px auto 0;
+  padding: 20px 16px 36px;
+  border-top: 2px solid var(--ink);
+  color: #3d362a;
+  font-size: 14.5px;
+}
+.foot-title { font-size: 18px; margin: 0 0 6px; color: var(--ink); }
+
+@media (max-width: 560px) {
+  .grid { grid-template-columns: 1fr; }
+  .control-row { flex-direction: column; }
+  .facts { grid-template-columns: 1fr; gap: 2px; }
+  .facts dd { margin-bottom: 8px; }
+  .price-now { font-size: 30px; }
+}
