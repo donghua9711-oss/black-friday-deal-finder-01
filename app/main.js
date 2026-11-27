@@ -78,8 +78,7 @@ function renderStats() {
     timeZone: "UTC",
   });
   statsEl.textContent =
-    `${deals.length} deals checked by hand · ${lows} verified new lows · ` +
-    `${flagged} inflated anchors flagged · last check ${when} UTC`;
+    `${deals.length} deals · ${lows} new lows · ${flagged} flagged · checked ${when} UTC`;
 }
 
 function render() {

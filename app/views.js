@@ -24,7 +24,10 @@ function fmtChecked(iso) {
 }
 
 export function signalBadge(deal) {
-  return el("span", `badge badge-${deal.signal}`, SIGNAL_LABEL[deal.signal]);
+  const badge = el("span", `badge badge-${deal.signal}`);
+  badge.append(el("span", "badge-dot"));
+  badge.append(el("span", "", SIGNAL_LABEL[deal.signal]));
+  return badge;
 }
 
 export function dealCard(deal) {
@@ -33,7 +36,7 @@ export function dealCard(deal) {
 
   const top = el("div", "card-top");
   top.append(signalBadge(deal));
-  const score = el("span", "score-chip", `${scoreDeal(deal)}`);
+  const score = el("span", "score-chip", `Score ${scoreDeal(deal)}`);
   score.title = "DealProof score: cut size, dollars saved and honesty signal";
   top.append(score);
   card.append(top);
@@ -135,7 +138,7 @@ export function renderDetail(container, deal, allDeals) {
 
   const top = el("div", "card-top");
   top.append(signalBadge(deal));
-  top.append(el("span", "score-chip big", `${scoreDeal(deal)}`));
+  top.append(el("span", "score-chip big", `Score ${scoreDeal(deal)}`));
   wrap.append(top);
 
   wrap.append(el("h2", "detail-title", deal.title));
