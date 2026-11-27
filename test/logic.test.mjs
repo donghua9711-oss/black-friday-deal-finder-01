@@ -68,3 +68,9 @@ test("formatMoney groups thousands and keeps cents only when needed", () => {
   assert.equal(formatMoney(1399.99), "$1,399.99");
   assert.equal(formatMoney(68.99), "$68.99");
 });
+
+test("filterDeals can keep only one honesty grade", () => {
+  assert.deepEqual(filterDeals(sample, { signal: "new-low" }).map((d) => d.id), ["a"]);
+  assert.deepEqual(filterDeals(sample, { signal: "inflated" }).map((d) => d.id), ["b"]);
+  assert.equal(filterDeals(sample, { signal: "" }).length, sample.length);
+});

@@ -36,6 +36,16 @@
       </select>
     </label>
     <label class="control">
+      <span class="control-label">Deal grade</span>
+      <select id="grade-select">
+        <option value="">All grades</option>
+        <option value="new-low">Verified new low</option>
+        <option value="strong">Strong price</option>
+        <option value="routine">Routine sale</option>
+        <option value="inflated">Inflated anchor</option>
+      </select>
+    </label>
+    <label class="control">
       <span class="control-label">Sort by</span>
       <select id="sort-select">
         <option value="score">Best DealProof score</option>
@@ -49,6 +59,8 @@
   <div id="cat-chips" class="chips" role="group" aria-label="Filter by category"></div>
   <p id="result-count" class="result-count" role="status"></p>
 </section>
+
+<section id="stats" class="stats" aria-label="Board statistics"></section>
 
 <section id="top5" class="top5" hidden></section>
 
