@@ -105,6 +105,10 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   border-bottom: 1px solid var(--line);
 }
 .card:hover { background: var(--surface); }
+.card { cursor: pointer; }
+.card-links { display: inline-flex; gap: 18px; }
+.details-link { font-size: 14px; font-weight: 600; text-decoration: none; white-space: nowrap; }
+.details-link:hover { text-decoration: underline; text-underline-offset: 3px; }
 .card-top {
   grid-column: 1 / -1;
   display: flex;
@@ -214,6 +218,17 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   min-height: 48px;
 }
 .cta-link:hover { background: #2a2c30; }
+.seller-box {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 16px 18px;
+  margin-top: 6px;
+}
+.seller-head { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; margin-bottom: 12px; }
+.seller-label { font-size: 13px; color: var(--muted); }
+.seller-name { font-size: 17px; font-weight: 750; }
+.seller-price { font-size: 15px; font-weight: 700; color: var(--low); font-variant-numeric: tabular-nums; }
+.seller-note { margin: 10px 0 0; font-size: 13px; color: var(--muted); }
 .alt-box { margin-top: 26px; border-top: 1px solid var(--line); padding-top: 14px; }
 .alt-box h3 { font-size: 15.5px; margin: 0 0 6px; }
 .alt-line { font-size: 15px; margin: 4px 0; }

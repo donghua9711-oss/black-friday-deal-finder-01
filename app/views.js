@@ -57,12 +57,23 @@ export function dealCard(deal) {
 
   const foot = el("div", "card-foot");
   foot.append(el("span", "card-checked", `Checked ${fmtChecked(deal.checked)} · ${deal.source}`));
+  const links = el("span", "card-links");
+  const detailsLink = el("a", "details-link", "Details →");
+  detailsLink.href = `#/deal/${deal.id}`;
+  links.append(detailsLink);
   const storeLink = el("a", "store-link", `View at ${deal.store}`);
   storeLink.href = deal.url;
   storeLink.target = "_blank";
   storeLink.rel = "noopener";
-  foot.append(storeLink);
+  links.append(storeLink);
+  foot.append(links);
   card.append(foot);
+
+  // The whole card opens the product page; only the store link leaves the site.
+  card.addEventListener("click", (event) => {
+    if (event.target.closest("a")) return;
+    location.hash = `/deal/${deal.id}`;
+  });
   return card;
 }
 
@@ -160,15 +171,30 @@ export function renderDetail(container, deal, allDeals) {
   fact("Store", deal.store);
   fact("Sale price", formatMoney(deal.price));
   fact("Usual price", formatMoney(deal.was));
+  fact("Discount", `${discountPct(deal)}% off — you save ${formatMoney(savings(deal))}`);
   fact("Price checked", fmtChecked(deal.checked));
   fact("Read from", deal.source);
   wrap.append(facts);
 
-  const cta = el("a", "cta-link", `See this product at ${deal.store}`);
+  // The seller container: who sells it, the price there, and the way out to
+  // the store's own website.
+  const seller = el("section", "seller-box");
+  const sellerHead = el("div", "seller-head");
+  sellerHead.append(el("span", "seller-label", "Sold by"));
+  sellerHead.append(el("span", "seller-name", deal.store));
+  sellerHead.append(
+    el("span", "seller-price", `${formatMoney(deal.price)} · −${discountPct(deal)}%`),
+  );
+  seller.append(sellerHead);
+  const cta = el("a", "cta-link", `Visit ${deal.store} →`);
   cta.href = deal.url;
   cta.target = "_blank";
   cta.rel = "noopener";
-  wrap.append(cta);
+  seller.append(cta);
+  seller.append(
+    el("p", "seller-note", `Opens this product on ${deal.store}'s website. Price checked ${fmtChecked(deal.checked)}.`),
+  );
+  wrap.append(seller);
 
   const others = allDeals.filter((d) => d.title === deal.title && d.id !== deal.id);
   if (others.length > 0) {
