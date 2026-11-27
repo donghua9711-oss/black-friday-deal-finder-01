@@ -1,8 +1,8 @@
 # DealProof — Black Friday deals, checked and graded honestly
 
-![Competition](https://make.fun/badge/black-friday-deal-finder-01.svg)
-![Rank](https://make.fun/badge/black-friday-deal-finder-01/donghua9711-oss/black-friday-deal-finder-01/rank.svg)
-![Reward](https://make.fun/badge/black-friday-deal-finder-01/donghua9711-oss/black-friday-deal-finder-01/reward.svg)
+[![make.fun · black-friday-deal-finder-01](https://make.fun/badge/black-friday-deal-finder-01.svg)](https://make.fun/bounty/black-friday-deal-finder-01?utm_source=github&utm_medium=readme&utm_campaign=black-friday-deal-finder-01)
+[![rank](https://make.fun/badge/black-friday-deal-finder-01/donghua9711-oss/black-friday-deal-finder-01/rank.svg)](https://make.fun/bounty/black-friday-deal-finder-01/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=black-friday-deal-finder-01)
+[![reward](https://make.fun/badge/black-friday-deal-finder-01/donghua9711-oss/black-friday-deal-finder-01/reward.svg)](https://make.fun/bounty/black-friday-deal-finder-01?utm_source=github&utm_medium=readme&utm_campaign=black-friday-deal-finder-01)
 
 A static deal-finder site for Black Friday 2026. Every deal on the board was
 found and checked by hand on Friday 27 November 2026, the day the sales were
@@ -38,7 +38,7 @@ output folder and writes `dossier.json` with the vendored make.fun library.
 ## Layout
 
 - `app/index.html` — the page: masthead, search and filter controls, board.
-- `app/data.js` — the 29 checked deals, each with its evidence and grade.
+- `app/data.js` — the 43 checked deals, each with its evidence and grade.
 - `app/logic.js` — pure scoring, filtering and sorting (unit-tested).
 - `app/views.js` — DOM rendering for cards, price checks and deal pages.
 - `app/main.js` — hash routing and control wiring.
