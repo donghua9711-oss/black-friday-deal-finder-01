@@ -1,6 +1,6 @@
 // DealProof views: every render builds DOM nodes and sets text with
 // textContent, never innerHTML, so deal text can never become markup.
-import { discountPct, savings, scoreDeal, formatMoney } from "./logic.js";
+import { discountPct, savings, formatMoney } from "./logic.js";
 
 export const SIGNAL_LABEL = {
   "new-low": "Verified new low",
@@ -36,9 +36,6 @@ export function dealCard(deal) {
 
   const top = el("div", "card-top");
   top.append(signalBadge(deal));
-  const score = el("span", "score-chip", `Score ${scoreDeal(deal)}`);
-  score.title = "DealProof score: cut size, dollars saved and honesty signal";
-  top.append(score);
   card.append(top);
 
   const title = el("h3", "card-title");
@@ -138,7 +135,6 @@ export function renderDetail(container, deal, allDeals) {
 
   const top = el("div", "card-top");
   top.append(signalBadge(deal));
-  top.append(el("span", "score-chip big", `Score ${scoreDeal(deal)}`));
   wrap.append(top);
 
   wrap.append(el("h2", "detail-title", deal.title));

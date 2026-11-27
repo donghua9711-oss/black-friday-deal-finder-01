@@ -14,7 +14,6 @@ const minEl = document.getElementById("min-select");
 const sortEl = document.getElementById("sort-select");
 const chipsEl = document.getElementById("cat-chips");
 const countEl = document.getElementById("result-count");
-const statsEl = document.getElementById("stats-line");
 
 const categories = [...new Set(deals.map((d) => d.category))].sort();
 const stores = [...new Set(deals.map((d) => d.store))].sort();
@@ -64,21 +63,6 @@ function updateHash(patch) {
   if (next.sort && next.sort !== "score") params.set("sort", next.sort);
   const qs = params.toString();
   location.hash = qs ? `/?${qs}` : "/";
-}
-
-function renderStats() {
-  const lows = deals.filter((d) => d.signal === "new-low").length;
-  const flagged = deals.filter((d) => d.signal === "inflated").length;
-  const latest = deals.map((d) => d.checked).sort().at(-1);
-  const when = new Date(latest).toLocaleString("en-GB", {
-    day: "numeric",
-    month: "short",
-    hour: "2-digit",
-    minute: "2-digit",
-    timeZone: "UTC",
-  });
-  statsEl.textContent =
-    `${deals.length} deals · ${lows} new lows · ${flagged} flagged · checked ${when} UTC`;
 }
 
 function render() {
@@ -138,5 +122,4 @@ minEl.addEventListener("change", () => updateHash({ min: Number(minEl.value) }))
 sortEl.addEventListener("change", () => updateHash({ sort: sortEl.value }));
 window.addEventListener("hashchange", render);
 
-renderStats();
 render();
