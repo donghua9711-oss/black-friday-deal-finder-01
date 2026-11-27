@@ -36,3 +36,11 @@ writeFileSync(
   join(out, 'dossier.json'),
   buildDossier(out, { text_max_bytes: 163840, screenshots: { max: 4, max_bytes: 262144 }, app_max_files: 993, app_max_bytes: 16777216 }),
 );
+
+// DealProof hand-in guard: fail loudly if the dossier did not land, so a
+// broken hand-in never looks like a finished one in the run log, and say
+// plainly what was handed in when it did.
+if (!existsSync(join(out, 'dossier.json'))) {
+  throw new Error('DealProof hand-in failed: dossier.json was not written to the output folder');
+}
+console.log('DealProof: app, screenshots and dossier.json handed in.');
